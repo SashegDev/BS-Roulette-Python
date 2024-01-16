@@ -1,5 +1,5 @@
 import random
-
+#lol
 
 class NoAmmoException(Exception):
     def __init__(self, msg="Shootgun don't have ammo!"):
