@@ -161,7 +161,7 @@ def u_in():
             rack = pygame.mixer.Sound("rack.mp3")
             rack.play(0)
             rack.set_volume(0.3)
-            u_hp=u_hp-1
+            p_hp=p_hp-1
             dealer()
 
         else:

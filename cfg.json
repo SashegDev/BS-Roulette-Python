@@ -1,0 +1,97 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/main.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": true
+  },
+  {
+   "optionDest": "name",
+   "value": "game"
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/cock.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/dead.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/discl.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/game.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/load.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/menu.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/rack.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/shoot.mp3;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440/Desktop/Buck-roulette python/BS-Roulette-Python/src/shotgun.py;."
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}
