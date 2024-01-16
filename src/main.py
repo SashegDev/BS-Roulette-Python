@@ -4,6 +4,9 @@ from os import system as sus
 import time as t
 from tkinter import messagebox as mb
 from shotgun import *
+
+
+
 pygame.mixer.init()
 pygame.mixer.music.load("discl.mp3")
 diskl = pygame.mixer.Sound("discl.mp3")
@@ -29,8 +32,15 @@ rang=3
 p_hp=2
 d_hp=2
 music=0
+beer_c = 0
+rip=0
+beer_score = 0
+u_ot=0
 
 r_=1
+shoot_s=0
+sig_s=0
+score_t=0
 
 u_input=0
 u_items=[items[0]]
@@ -40,10 +50,8 @@ gun=Shootgun(6)
 
 sus("cls")
 t.sleep(TIME)
-print("Hi, this is Sasheg,\nI am wants to warn you that this game is gambling,\nAnd everything that happens in it does not need to be taken seriously.\nWell, it seems like the whole disclaimer,\nIf you want to start playing, write 'SHOOT'")
+print("Hi, this is Sasheg,\nI am wants to warn you that this game is gambling,\nAnd everything that happens in it does not need to be taken seriously.\nWell, it seems like the whole disclaimer,\nIf you want to start playing, type anything to continue")
 disc=input("\n>>> ")
-if disc != 'SHOOT':
-    exit
 pygame.mixer.music.load("shoot.mp3")
 shit = pygame.mixer.Sound("shoot.mp3")
 shit.play(0)
@@ -100,6 +108,12 @@ def u_in():
     global d_hp
     global p_hp
     global name
+    global beer_c
+    global beer_score
+    global shoot_s
+    global sig_s
+    global score_t
+
 
     if d_hp == 0:
         r()
@@ -111,8 +125,8 @@ def u_in():
 
 
     sus("cls")
-    print(f"HP Info\nDEALER: {d_hp}\n{name}: {p_hp}\n")
-    u_input=int(input("1 shot dealer\n2 shot yourself\n3 beer\nYour choise: "))
+    print(f"HP Info\nDEALER: {d_hp}\n{name[:6]}: {p_hp}\n")
+    u_input=int(input("1 shot dealer\n2 shot yourself\n3 beer\n7 Sigarette\nYour choise: "))
 
     if u_input == 1:
         shoot = gun.shoot()
@@ -130,6 +144,8 @@ def u_in():
             rack.play(0)
             rack.set_volume(0.3)
             d_hp=d_hp-1
+            shoot_s+=1
+            score_t+=100
             dealer()
 
         else:
@@ -144,6 +160,7 @@ def u_in():
             rack = pygame.mixer.Sound("rack.mp3")
             rack.play(0)
             rack.set_volume(0.3)
+            score_t+=50
             dealer()
 
     elif u_input == 2:
@@ -161,6 +178,7 @@ def u_in():
             rack = pygame.mixer.Sound("rack.mp3")
             rack.play(0)
             rack.set_volume(0.3)
+            score_t+=50
             p_hp=p_hp-1
             dealer()
 
@@ -175,24 +193,45 @@ def u_in():
             rack = pygame.mixer.Sound("rack.mp3")
             rack.play(0)
             rack.set_volume(0.3)
+            score_t+=100
             u_in()
 
     elif u_input == 3:
-        shoot = gun.shoot()
 
-        if shoot:
-            pygame.mixer.music.load("rack.mp3")
-            rack = pygame.mixer.Sound("rack.mp3")
-            rack.play(0)
-            rack.set_volume(0.3)
-            mb.showinfo("AMMO","It was live")
+        beer_c += 1
+        if beer_c >= 3:
+            mb.showinfo("INFO","you can't use that")
+            score_t-=10
         else:
-            pygame.mixer.music.load("rack.mp3")
-            rack = pygame.mixer.Sound("rack.mp3")
-            rack.play(0)
-            rack.set_volume(0.3)
-            mb.showinfo("AMMO","It was blank")
-        u_in()
+            beer_score += 1
+            shoot = gun.shoot()
+            if shoot:
+                pygame.mixer.music.load("rack.mp3")
+                rack = pygame.mixer.Sound("rack.mp3")
+                rack.play(0)
+                rack.set_volume(0.3)
+                mb.showinfo("AMMO","It was live")
+                score_t+=150
+            else:
+                pygame.mixer.music.load("rack.mp3")
+                rack = pygame.mixer.Sound("rack.mp3")
+                rack.play(0)
+                rack.set_volume(0.3)
+                mb.showinfo("AMMO","It was blank")
+                score_t+=100
+            u_in()
+
+    elif u_input == 7:
+        if p_hp >= 2:
+            mb.showinfo("INFO","you can't use this")
+            t.sleep(TIME)
+            u_in()
+            score_t=score_t-10
+        else:
+            score_t+=50
+            sig_s+=1
+            p_hp+=1
+            u_in()
 
     else:
         print("от 1 до 3 чё не ясно?")
@@ -269,7 +308,7 @@ def dealer():
             cock = pygame.mixer.Sound("cock.mp3")
             cock.play(0)
             cock.set_volume(0.6)
-            mb.showeinfo("TICK!","It was blank.\nDealer turn")
+            mb.showinfo("TICK!","It was blank.\nDealer turn")
             pygame.mixer.music.load("rack.mp3")
             rack = pygame.mixer.Sound("rack.mp3")
             rack.play(0)
@@ -366,17 +405,47 @@ def game():
     pygame.mixer.music.load("load.mp3")
     load = pygame.mixer.Sound("load.mp3")
     load.play(6)
-    load.set_volume(0.3)
+    load.set_volume(0.8)
     t.sleep(4)
     mb.showinfo("Ammo",gun.message_for_play())
     pygame.mixer.music.load("rack.mp3")
     rack = pygame.mixer.Sound("rack.mp3")
     rack.play(0)
-    rack.set_volume(0.3)
+    rack.set_volume(0.8)
     #mb.showinfo("Ammo",gun.message_for_dev())
     #mb.showinfo("Ammo",gun.message_for_play())
     print("Your items:\n",u_items)
     u_in()
+
+def end():
+    global name
+    global beer_score
+    global shoot_s
+    global sig_s
+    global score_t
+    global u_ot
+    mb.showinfo("INFO","You ended 5 rounds!")
+    sus("cls")
+    u_ot=int(input("Do you want to leave\nOr double score?\n1 - Leave\n2 - Double score\n>>> "))
+    if u_ot == 1:
+        sus("cls")
+        print(f"\n{name[:6]}, CONGRATULATIONS!\n\
+Shells enjected: {beer_score}\n\
+Shells Shotted: {shoot_s}\n\
+Sigarrated: {sig_s}\n\n\
+TOTAL ROUNDS: {rip}\n\n\
+TOTAL SCORE: {score_t}\n\n\b\
+              ")
+        t.sleep(2)
+        input("just type anything and programm will end\n>>> ")
+        exit(1)
+    elif u_ot == 2:
+        r()
+    else:
+        print("you are dumb? 1 or 2 type")
+        t.sleep(2)
+        end()
+
 
 def r():
 
@@ -385,14 +454,21 @@ def r():
     global d_hp
     global p_hp
     global music
+    global rip
     music+=1
     if d_hp <= 0:
         r_+=1
-        print("Round ended!\nStarting Round",r_)
-        d_hp=2
-        p_hp=2
+        rip+=1
+        print("Round ended!\nStarting next round...")
+        print("Round counter:",rip)
+        t.sleep(TIME)
+        d_hp=2+rip
+        p_hp=2+rip
         try:
-            game()
+            if rip % 5 == 0:
+                end()
+            else:
+                game()
         except NoAmmoException:
             r_+=1
             mb.showwarning("AMMO","Hmm\nNo ammo....\nHow unfortunate...")
@@ -407,7 +483,13 @@ def r():
             mb.showwarning("AMMO","Hmm\nNo ammo....\nHow unfortunate...")
             mb.showwarning("GAME","New ammos...")
             r()
+        except ValueError:
+            sus("cls")
+            print("ValueError!\nFor next time game will crash!")
+            t.sleep(2)
+            u_in()
 
 
 
 musicgame()
+#end()
